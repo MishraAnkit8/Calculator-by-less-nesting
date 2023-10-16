@@ -15,12 +15,14 @@ function valfun(e) {
     // Clear button for  clear the display
         if (e.target.textContent === 'C') {
                 clear();
+                return;
         }
 
     // Eneter or equal button for calculate result
 
         if(e.target.textContent === 'Enter'){
             calculateResult();
+            return;
         }
 
 
@@ -28,12 +30,14 @@ function valfun(e) {
 
         if (e.target.textContent === '+' || e.target.textContent === '-' || e.target.textContent === '*' || e.target.textContent === '/') {
             handleOperatorClick(e.target.textContent);
+            return;
         }
 
          //for dot 
 
         else if (e.target.textContent === '.'){
             handleDotClick(e.target.value);
+            return;
 
         }
          
@@ -41,6 +45,7 @@ function valfun(e) {
 
         else {
             handleNumberClick(e.target.value);
+            return;
         }
          
     }
@@ -57,15 +62,15 @@ function clear() {
 
 // handling operator click
 function handleOperatorClick(operator){
-    if(currentNum !== ''){
-        if(currentOp !== ''){
+    if(!(currentNum  || currentOp ) ) return ;
+       
             calculateResult();
-        }
+        
         currentOp = operator;
         res.value = currentNum + currentOp;
         currentNum = '';
         dotBtn = false;
-    }
+    
  }
 
 // handling number click
